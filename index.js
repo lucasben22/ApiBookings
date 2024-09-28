@@ -1,8 +1,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import { Router } from "express";
-import { postUser, getUsers } from "./controllers/users.controller.js";
+import router from "./routes/index.routes.js";
 
 //Server
 const PORT = 3000;
@@ -14,10 +13,8 @@ app.listen(PORT, () => {
 	console.log(`Server on port ${PORT}`)
 	}) 
 
-//Router
-const userRouter = Router();
-userRouter.get("/api", getUsers);
-userRouter.post("/api/users", postUser);
+//MW
+app.use(express.json())
 
 //DB
 //MongoDB Atlas
@@ -33,6 +30,6 @@ mongoose.connect(mongoDBUrl)
   .then(() => console.log('Conectado a MongoDB'))
   .catch((error) => console.error('Error de conexión:', error));
 
-//MW
-app.use(express.json())
-app.use(userRouter);
+//Router
+app.use("/", router);
+
