@@ -1,9 +1,11 @@
 
 import { Schema, model } from "mongoose";
-// import { userModel } from "./users.models.js";
+import { userModel } from "./users.models.js";
 
 const bookingSchema = new Schema({
-  userId: { type: Number },  
+  userId: { type: Schema.Types.ObjectId, 
+        ref: 'users', 
+        required: true }, 
   room: { type: Number, 
           required: true },
   checkInDate: { type: Date, 
