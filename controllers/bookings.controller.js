@@ -16,7 +16,7 @@ const {userId, room, checkInDate, checkOutDate, numberOfGuests, totalPrice } = r
 	
     if (!userId || !room || !checkInDate || !checkOutDate || !numberOfGuests)
  { 
-        return res.status(400).send({respuesta: 'Error', mensaje: 'Faltan datos obligatorios'});
+        return res.status(400).send({respuesta: 'Error', mensaje: 'Faltan datos'});
     }
 
     try {
